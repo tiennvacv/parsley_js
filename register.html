@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+    <title></title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form method="post" class="form-horizontal" data-parsley-priority-enabled="true">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" required data-parsley-pattern="^[a-zA-Z0-9]+$" data-parsley-length="[6, 15]" data-parsley-trigger="change" placeholder="Username" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" id="pass2" class="form-control" required data-parsley-length="[6, 10]" data-parsley-trigger="change" placeholder="Password" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Repeat Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" required data-parsley-equalto="#pass2" data-parsley-trigger="change" placeholder="Repeat Password" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" required data-parsley-type="email" data-parsley-trigger="change" placeholder="Email" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" required data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-trigger="change" placeholder="First Name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" required data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-trigger="change" placeholder="Last Name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Name Kana</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" data-parsley-kana />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">URL</label>
+                    <div class="col-sm-6">
+                        <input type="url" class="form-control" required data-parsley-type="url" data-parsley-trigger="change" placeholder="URL" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Phone Number</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" required data-parsley-type="number" data-parsley-trigger="change" placeholder="Phone Number" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Gender</label>
+                    <div class="col-sm-6">
+                        <p class="">
+                            <input type="radio" name="gender" id="genderM" value="M" required=""> Male
+                            <input type="radio" name="gender" id="genderF" value="F"> Female
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Hobbies (Optional, but 2 minimum)</label>
+                    <div class="col-sm-6">
+                        <p>
+                            <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2"> Skiing <br>
+                            <input type="checkbox" name="hobbies[]" id="hobby2" value="run"> Running<br>
+                            <input type="checkbox" name="hobbies[]" id="hobby3" value="eat"> Eating<br>
+                            <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep"> Sleeping<br>
+                            <input type="checkbox" name="hobbies[]" id="hobby5" value="read"> Reading<br>
+                            <input type="checkbox" name="hobbies[]" id="hobby6" value="code"> Coding<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">File (Please provide a file smaller than 42Kb)</label>
+                    <div class="col-sm-6">
+                        <input type="file" name="f" required="" data-parsley-max-file-size="42">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9 m-t-15">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-default m-l-5">Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/parsley.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('form').parsley();
+        });
+
+        window.Parsley.addValidator('maxFileSize', {
+            validateString: function(_value, maxSize, parsleyInstance) {
+                if (!window.FormData) {
+                    alert('You are making all developpers in the world cringe. Upgrade your browser!');
+                    return true;
+                }
+                var files = parsleyInstance.$element[0].files;
+                return files.length != 1  || files[0].size <= maxSize * 1024;
+            },
+            requirementType: 'integer',
+            messages: {
+                en: 'This file should not be larger than %s Kb',
+                fr: 'Ce fichier est plus grand que %s Kb.'
+            }
+        });
+
+        window.Parsley.addValidator('kana', {
+            validateString: function(value) {
+                return !!value.match(/[\u4E00-\u9FAF\u3040-\u3096\u30A1-\u30FA\uFF66-\uFF9D\u31F0-\u31FF]/);
+            },
+            messages: {
+                en: 'This value not contain kana character'
+            }
+        });
+
+    </script>
+</body>
+</html>

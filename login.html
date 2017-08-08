@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+    <title></title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <!-- Top content -->
+            <div class="top-content">
+                <div class="inner-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2 text">
+                                <h1><strong>Bootstrap</strong> Login Form</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3 form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <h3>Login to our site</h3>
+                                        <p>Enter your username and password to log on:</p>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <form role="form" action="" method="post" class="login-form">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-email">Username</label>
+                                            <input type="email" name="form-email" data-parsley-trigger="change" required placeholder="Username..." class="form-email form-control" id="form-email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            <input type="password" name="form-password" autocomplete="new-password" data-parsley-trigger="change" required data-parsley-minlength="6" data-parsley-maxlength="20" placeholder="Password..." class="form-password form-control" id="form-password">
+                                        </div>
+                                        <button type="submit" class="btn">Sign in!</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3 social-login">
+                                <h3>...or login with:</h3>
+                                <div class="social-login-buttons">
+                                    <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                                        <i class="fa fa-facebook"></i> Facebook
+                                    </a>
+                                    <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                                        <i class="fa fa-twitter"></i> Twitter
+                                    </a>
+                                    <a class="btn btn-link-1 btn-link-1-google" href="#">
+                                        <i class="fa fa-google-plus"></i> Google Plus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/parsley.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('form').parsley();
+        });
+    </script>
+</body>
+</html>
